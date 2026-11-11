@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DOMAIN CLAIMED — Authorized Security Assessment — pure.app</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    body { background: #0b0e14; color: #cdd6f4; font-family: "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 40px 20px; }
+    .box { max-width: 780px; margin: 0 auto; background: #151922; border: 2px solid #f38ba8; border-radius: 10px; padding: 32px 36px; }
+    h1 { color: #f38ba8; font-size: 26px; margin: 0 0 6px 0; }
+    h2 { color: #a6e3a1; font-size: 18px; margin: 24px 0 8px 0; }
+    p, li { line-height: 1.6; font-size: 15px; }
+    code { background: #1e2430; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    .tag { display: inline-block; background: #f38ba8; color: #0b0e14; font-weight: bold; padding: 4px 12px; border-radius: 20px; font-size: 12px; letter-spacing: 1px; }
+    .warn { background: #1e2430; border-left: 4px solid #f9e2af; padding: 12px 16px; margin: 18px 0; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <span class="tag">PROOF OF CONTROL</span>
+    <h1>payments.pure.app is under redteam control</h1>
+    <p>This hostname is controlled by the <strong>red team</strong> as part of an
+    <strong>authorized security assessment</strong> of <code>pure.app</code>
+    (engagement <code>2026-11-10-191852-pure.app</code>).</p>
+
+    <h2>What happened</h2>
+    <p><code>payments.pure.app</code> pointed (CNAME) to <code>thepureapp.github.io</code>
+    — a GitHub Pages address with <strong>no site behind it</strong>. GitHub Pages serves
+    any custom domain claimed by any GitHub Pages site. We claimed it to demonstrate
+    that a third party can fully take over this payment subdomain.</p>
+
+    <h2>What this proves</h2>
+    <ul>
+      <li>An attacker could have served <strong>arbitrary content</strong> on your payment subdomain.</li>
+      <li>Phishing pages, credential harvesting, malicious redirects, HTTPS with a valid certificate.</li>
+      <li>Any user trusting <code>*.pure.app</code> for payments could be attacked with no visible warning.</li>
+    </ul>
+
+    <div class="warn">
+      <strong>No phishing forms. No card data collection.</strong> This page is a
+      static proof of control only — no forms, no inputs, no tracking, no data storage.
+    </div>
+
+    <h2>Metadata</h2>
+    <ul>
+      <li>Task: <code>TASK-FL-01</code> (fast-lane domain claim)</li>
+      <li>Date claimed: <strong>2026-11-11</strong></li>
+      <li>Method: GitHub Pages custom domain claim (dangling CNAME)</li>
+      <li>Source finding: <code>FND-1-03-02</code></li>
+      <li>Also served: <code>/takeover-proof.txt</code></li>
+    </ul>
+
+    <h2>Remediation for the owner</h2>
+    <ul>
+      <li>Remove the CNAME <code>payments.pure.app -&gt; thepureapp.github.io</code> from the DNS zone, or</li>
+      <li>Publish an official GitHub Pages site for this domain and verify the <code>pure.app</code> domain in GitHub organization settings (verified domains block third-party claims).</li>
+      <li>Audit all DNS records pointing to SaaS endpoints (GitHub Pages, Heroku, S3, Azure) for similar dangling references.</li>
+    </ul>
+
+    <p style="color:#6c7086;font-size:12px;">Authorized red team assessment — pure.app — 2026-11-11 — TASK-FL-01</p>
+  </div>
+</body>
+</html>
