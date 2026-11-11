@@ -1,0 +1,41 @@
+PROOF OF CONTROL — payments.pure.app
+====================================
+
+This file is served from the hostname payments.pure.app to prove that the
+domain was taken over by the red team during an AUTHORIZED security
+assessment of pure.app.
+
+Engagement : 2026-11-10-191852-pure.app
+Task       : TASK-FL-01 (fast-lane GitHub Pages domain claim)
+Finding    : FND-1-03-02 (payments.pure.app dangling CNAME -> thepureapp.github.io)
+Date       : 2026-11-11
+Method     : GitHub Pages custom domain claim via dangling CNAME
+
+Mechanism
+---------
+Before the claim, payments.pure.app had DNS:
+    payments.pure.app. 300 IN CNAME thepureapp.github.io.
+    thepureapp.github.io -> 185.199.108.153 / .109.153 / .110.153 / .111.153 (GitHub Pages)
+
+and returned "HTTP/2 404 - Page not found - GitHub Pages" (server: GitHub.com,
+served by Fastly). No GitHub Pages site claimed this custom domain. GitHub
+Pages serves any custom domain claimed by any Pages site regardless of the
+CNAME target name, so this domain was claimable by any GitHub account.
+
+We created a GitHub Pages site with custom domain payments.pure.app. This
+file (and index.html) is now served from that hostname.
+
+Impact
+------
+Full content control over the payment subdomain of pure.app: phishing under
+the trusted brand, credential/card harvesting pages, malicious redirects,
+valid TLS certificate. High-impact target (payments.* = user trust zone).
+
+Remediation
+-----------
+1. Delete the CNAME payments.pure.app -> thepureapp.github.io, OR
+2. Publish an official Pages site + verify the pure.app domain in GitHub
+   org settings (verified domains block third-party claims).
+3. Audit all DNS records pointing to SaaS endpoints for dangling references.
+
+No forms, no card fields, no tracking: this is a static proof of control.
